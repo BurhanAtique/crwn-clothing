@@ -31,7 +31,9 @@ class SignIn extends React.Component {
 
   handleChange = event => {
     const { value, name } = event.target;
-
+    console.log(value);
+    console.log(name);
+  
     this.setState({ [name]: value });
   };
 
@@ -45,9 +47,10 @@ class SignIn extends React.Component {
           <FormInput
             name='email'
             type='email'
+            bur="burhan"
             handleChange={this.handleChange}
             value={this.state.email}
-            label="email"
+            label="emailff"
             required
           />
           <FormInput

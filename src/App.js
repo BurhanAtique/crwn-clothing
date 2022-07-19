@@ -50,11 +50,11 @@ class App extends Component {
   }
   
 }
-const mapStateToProps = ({user}) => ({
+const mapStateToProps = ({user}) => ({ // this is required when we need some value in this component from the store so we map state(which is present on store) to the props in the current component
   currentUser: user.currentUser
 });
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = dispatch => ({ // this dispatch is a method  that is being passed as an argument
     setCurrentUser: user => dispatch(setCurrentUser(user)) // here in this dispatch method setCurrentUser is the action object which will be passed to every reducer as mentiond in notes
 });
 
-export default connect(mapStateToProps,mapDispatchToProps)(App); // we dont need the value of the user in App so we dont need to update the props here 
+export default connect(mapStateToProps,mapDispatchToProps)(App);  
