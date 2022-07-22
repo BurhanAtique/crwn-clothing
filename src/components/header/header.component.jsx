@@ -8,7 +8,7 @@ import {auth} from '../../firebase/firebase.utils'
 import {connect} from 'react-redux';
 import  CartIcon  from '../cart-icon/cart-icon.component'
 
-const Header = ({currentUser, hidden}) => ( // this is the same name as in mapStateToProps before :
+const Header = ({currentUser, hidden}) => ( // currentUser is the same name as in mapStateToProps(commented method) before :
   <div className='header'>
     <Link className='logo-container' to='/'>
       <Logo className='logo' />
@@ -38,7 +38,7 @@ const Header = ({currentUser, hidden}) => ( // this is the same name as in mapSt
 //   currentUser: state.user.currentUser
 // });
 
-const mapStateToProps = ({user:{currentUser}, cart:{hidden}}) => ({
+const mapStateToProps = ({user:{currentUser}, cart:{hidden}}) => ({ // here user & cart before : are the names of the reducers in rootReducers
   currentUser,
   hidden
 }); 
