@@ -38,7 +38,7 @@ const Header = ({currentUser, hidden}) => ( // currentUser is the same name as i
 //   currentUser: state.user.currentUser
 // });
 
-const mapStateToProps = ({user:{currentUser}, cart:{hidden}}) => ({ // here user & cart before : are the names of the reducers in rootReducers
+const mapStateToProps = ({user:{currentUser}, cart:{hidden}}) => ({ // here user & cart before : are the names of the reducers in rootReducers..this is alo one way of destructuring
   currentUser,
   hidden
 }); 
