@@ -8,6 +8,10 @@ import { Component } from 'react';
 import {auth, createUserProfileDocument} from './firebase/firebase.utils'
 import {connect} from 'react-redux';
 import {setCurrentUser} from './redux/user/user.action'
+import { createStructuredSelector } from 'reselect';
+import {selectCurrentUser} from './redux/user/user.selector.js';
+import CheckoutPage from '../src/pages/checkout/checkout.component';
+
 
 class App extends Component {
  
@@ -42,6 +46,7 @@ class App extends Component {
         <Header/>
         <Switch>
           <Route exact path='/' component={HomePage} />
+          <Route exact path='/checkout' component={CheckoutPage} />
           <Route path='/shop' component={ShopPage} />
           <Route path='/signin' render={() => this.props.currentUser ? (<Redirect to='/' />): (<SignInAndSignUpPage />)} />
         </Switch>
@@ -50,8 +55,14 @@ class App extends Component {
   }
   
 }
-const mapStateToProps = ({user}) => ({ // this is required when we need some value in this component from the store so we map state(which is present on store) to the props in the current component
-  currentUser: user.currentUser
+
+// const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }) => ({ // this is required when we need some value in this component from the store so we map state(which is present on store) to the props in the current component
+//   currentUser,
+//   hidden
+// });
+
+const mapStateToProps = createStructuredSelector ({ 
+  currentUser: selectCurrentUser
 });
 const mapDispatchToProps = dispatch => ({ // this dispatch is a method  that is being passed as an argument
     setCurrentUser: user => dispatch(setCurrentUser(user)) // here in this dispatch method setCurrentUser is the action object which will be passed to every reducer as mentiond in notes
