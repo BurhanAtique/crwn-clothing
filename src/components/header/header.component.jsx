@@ -6,35 +6,64 @@ import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 import { selectCartHidden } from '../../redux/cart/cart.selector.js';
 
 import { selectCurrentUser } from '../../redux/user/user.selector.js';
-import './header.styles.scss';
+// import './header.styles.scss';
 import {auth} from '../../firebase/firebase.utils'
 import {connect} from 'react-redux';
 import  CartIcon  from '../cart-icon/cart-icon.component'
+import {
+  HeaderContainer,
+  LogoContainer,
+  OptionsContainer,
+  OptionLink
+} from './header.styles';
 
-const Header = ({currentUser, hidden}) => ( // currentUser is the same name as in mapStateToProps(commented method) before :
-  <div className='header'>
-    <Link className='logo-container' to='/'>
-      <Logo className='logo' />
-    </Link>
-    <div className='options'>
-      <Link className='option' to='/shop'>
-        SHOP
-      </Link>
-      <Link className='option' to='/shop'>
-        CONTACT
-      </Link>
-      { 
-        currentUser ?
-        <div className='option' onClick={()=>auth.signOut()}>Sign Out</div>
-        :
-        <Link to='/signin'>Sign In</Link>
-      }
-      <CartIcon />
-    </div>
-    {hidden?null:<CartDropdown/>}
+// const Header = ({currentUser, hidden}) => ( // currentUser is the same name as in mapStateToProps(commented method) before :
+//   <div className='header'>
+//     <Link className='logo-container' to='/'>
+//       <Logo className='logo' />
+//     </Link>
+//     <div className='options'>
+//       <Link className='option' to='/shop'>
+//         SHOP
+//       </Link>
+//       <Link className='option' to='/shop'>
+//         CONTACT
+//       </Link>
+//       { 
+//         currentUser ?
+//         <div className='option' onClick={()=>auth.signOut()}>Sign Out</div>
+//         :
+//         <Link to='/signin'>Sign In</Link>
+//       }
+//       <CartIcon />
+//     </div>
+//     {hidden?null:<CartDropdown/>}
     
-  </div>
+//   </div>
+// );
+
+
+const Header = ({ currentUser, hidden }) => (
+  <HeaderContainer>
+    <LogoContainer to='/'>
+      <Logo className='logo' />
+    </LogoContainer>
+    <OptionsContainer>
+      <OptionLink to='/shop'>SHOP</OptionLink>
+      <OptionLink to='/shop'>CONTACT</OptionLink>
+      {currentUser ? (
+        <OptionLink as='div' onClick={() => auth.signOut()}>
+          SIGN OUT
+        </OptionLink>
+      ) : (
+        <OptionLink to='/signin'>SIGN IN</OptionLink>
+      )}
+      <CartIcon />
+    </OptionsContainer>
+    {hidden ? null : <CartDropdown />}
+  </HeaderContainer>
 );
+
 
 // here this state is the root reducer
 // const mapStateToProps = state => ({

@@ -23,11 +23,11 @@ export const selectCollections=createSelector([selectShop],shop=>shop.collection
 export const selectCollection = collectionUrlParam =>
   createSelector(
     [selectCollections],
-    collections => collections[collectionUrlParam]
+    collections => (collections ? collections[collectionUrlParam]:null)
   );
  
   //Object.keys return us all the keys oof the object in array form
   export const selectCollectionsForPreview = createSelector(
     [selectCollections],
-    collections => Object.keys(collections).map(key => collections[key])
+    collections => collections ? Object.keys(collections).map((key) => collections[key]) : []
   );
